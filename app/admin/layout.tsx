@@ -9,7 +9,25 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState<any>(null);
+    // const [user, setUser] = useState<any>(null);
+
+    // useEffect(() => {
+    //     const fetchUser = async () => {
+    //         const supabase = createClient();
+    //         const { data: user, error } = await supabase.auth.getUser();
+
+    //         // If there's no user or an error, redirect to the login page
+    //         if (error || !user) {
+    //             redirect("/login");
+    //             return;
+    //         }
+
+    //         setUser(user); // Set user data when authenticated
+    //         setLoading(false); // Set loading to false when done fetching user
+    //     };
+
+    //     fetchUser();
+    // }, []);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -22,12 +40,12 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                 return;
             }
 
-            setUser(user); // Set user data when authenticated
             setLoading(false); // Set loading to false when done fetching user
         };
 
         fetchUser();
     }, []);
+
 
     // Show loading state while waiting for the session check
     if (loading) {
