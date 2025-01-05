@@ -15,7 +15,7 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { login } from "@/actions/login"
+import { signup, login } from "@/actions/auth"
 
 const formSchema = z.object({
     email: z.string().email({
@@ -32,27 +32,30 @@ export function LoginForm() {
         resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
-            password: "",
+            password: ""
         },
     });
 
     // 2. Define a submit handler.
-    async function onSubmit(values: z.infer<typeof formSchema>) {
-        // Call the login function with email and password
-        try {
-            const formData = new FormData();
-            formData.append('email', values.email);
-            formData.append('password', values.password);
+    // async function onSubmit(values: z.infer<typeof formSchema>) {
+    //     // Call the login function with email and password
+    //     try {
+    //         const formData = new FormData();
+    //         formData.append('email', values.email);
+    //         formData.append('password', values.password);
 
-            await login(formData); // Pass FormData to the server-side login function
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    //         await login(formData); // Pass FormData to the server-side login function
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <Form {...form} >
+            <form className="space-y-8">
+                <div className="text-center">
+                    <h1 className="text-3xl font-bold">Login</h1>
+                </div>
                 <FormField
                     control={form.control}
                     name="email"
@@ -79,7 +82,10 @@ export function LoginForm() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Login</Button>
+                <div className="flex justify-between">
+                    <Button formAction={login} type="submit">Login</Button>
+                    <Button formAction={signup} type="submit">Signup</Button>
+                </div>
             </form>
         </Form>
     )

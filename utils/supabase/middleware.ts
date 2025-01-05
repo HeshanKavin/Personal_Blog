@@ -33,20 +33,17 @@ export async function updateSession(request: NextRequest) {
 
     const {
         data: { user },
-    } = await supabase.auth.getUser();
+    } = await supabase.auth.getUser()
 
-    if (!user) {
-        // If no user is authenticated, first go to the home page
-        if (request.nextUrl.pathname !== '/') {
-            const homeUrl = request.nextUrl.clone();
-            homeUrl.pathname = '/';
-            return NextResponse.redirect(homeUrl);
-        }
-
-        // After visiting the home page, redirect to the login page
-        const loginUrl = request.nextUrl.clone();
-        loginUrl.pathname = '/login';
-        return NextResponse.redirect(loginUrl);
+    if (
+        !user &&
+        !request.nextUrl.pathname.startsWith('/') && // Avoid redirect loops
+        !request.nextUrl.pathname.startsWith('/auth') // Avoid redirect loops
+    ) {
+        // no user, potentially respond by redirecting the user to the login page
+        const url = request.nextUrl.clone()
+        url.pathname = '/login' // Redirect to the login page
+        return NextResponse.redirect(url)
     }
 
 
