@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import { FaFacebook, FaInstagram, FaYoutube, FaTwitter, FaSearch } from 'react-icons/fa';
 import { ModeToggle } from './ModeToggle';
 import NavigationMenuDemo from './NavigationMenuDemo';

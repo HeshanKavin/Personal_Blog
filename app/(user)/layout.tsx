@@ -3,7 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import SiteConfig from "../config/site";
 import NavBar from "@/components/NavBar";
-import { ThemeProvider } from "@/components/ThemeProvider";
+//import { ThemeProvider } from "@/components/ThemeProvider";
 import { Footer } from "@/components/Footer";
 
 
