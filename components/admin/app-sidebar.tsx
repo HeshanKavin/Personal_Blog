@@ -29,8 +29,8 @@ import {
 // This is sample data.
 const data = {
     user: {
-        name: "shadcn",
-        email: "m@example.com",
+        name: "Admin",
+        email: "Admin@gmail.com",
         avatar: "/avatars/shadcn.jpg",
     },
     teams: [
@@ -52,64 +52,38 @@ const data = {
     ],
     navMain: [
         {
-            title: "Playground",
-            url: "#",
+            title: "Blogs",
+            url: "/admin/blog",
             icon: SquareTerminal,
             isActive: true,
             items: [
                 {
-                    title: "History",
-                    url: "#",
+                    title: "All Blogs",
+                    url: "/admin/blog",
                 },
                 {
-                    title: "Starred",
-                    url: "#",
+                    title: "Create Blog",
+                    url: "/admin/blog/create",
                 },
-                {
-                    title: "Settings",
-                    url: "#",
-                },
+
             ],
         },
         {
-            title: "Models",
-            url: "#",
+            title: "Categories",
+            url: "/admin/categories",
             icon: Bot,
             items: [
                 {
-                    title: "Genesis",
-                    url: "#",
+                    title: "Add Category",
+                    url: "/admin/categories/add-category",
                 },
                 {
-                    title: "Explorer",
-                    url: "#",
+                    title: "Edit Category",
+                    url: "/admin/categories/edit-category",
                 },
                 {
-                    title: "Quantum",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Documentation",
-            url: "#",
-            icon: BookOpen,
-            items: [
-                {
-                    title: "Introduction",
-                    url: "#",
-                },
-                {
-                    title: "Get Started",
-                    url: "#",
-                },
-                {
-                    title: "Tutorials",
-                    url: "#",
-                },
-                {
-                    title: "Changelog",
-                    url: "#",
+                    title: "Delete Category",
+                    url: "/admin/categories/delete-category",
                 },
             ],
         },
@@ -126,32 +100,7 @@ const data = {
                     title: "Team",
                     url: "#",
                 },
-                {
-                    title: "Billing",
-                    url: "#",
-                },
-                {
-                    title: "Limits",
-                    url: "#",
-                },
             ],
-        },
-    ],
-    projects: [
-        {
-            name: "Design Engineering",
-            url: "#",
-            icon: Frame,
-        },
-        {
-            name: "Sales & Marketing",
-            url: "#",
-            icon: PieChart,
-        },
-        {
-            name: "Travel",
-            url: "#",
-            icon: Map,
         },
     ],
 }
@@ -164,7 +113,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={data.navMain} />
-                <NavProjects projects={data.projects} />
             </SidebarContent>
             <SidebarFooter>
                 <NavUser user={data.user} />
