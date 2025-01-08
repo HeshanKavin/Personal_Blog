@@ -1,74 +1,69 @@
-"use client";
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import Tiptap from '@/components/admin/text-editor';
 
-import React, { useState } from "react";
-
-export default function AddBlogForm() {
-    const [formData, setFormData] = useState({
-        title: "",
-        content: "",
-        category: "",
-    });
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log("Form submitted:", formData);
-        // Add logic to send data to your backend
-    };
-
+const AddBlog = () => {
     return (
-        <div className="p-5">
-            <h1 className="text-2xl mb-5">Create a New Blog</h1>
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label htmlFor="title" className="block text-sm font-medium">
+        <div className="container mx-auto p-4 max-w-4xl">
+            <h1 className="text-2xl font-bold mb-6">Create New Blog</h1>
+            <form className="space-y-4">
+                {/* Title Input */}
+                <div className="form-group">
+                    <Label htmlFor="title" className="block mb-1 font-medium text-gray-700">
                         Title
-                    </label>
-                    <input
-                        type="text"
+                    </Label>
+                    <Input
                         id="title"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleChange}
-                        className="w-full border px-3 py-2"
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="content" className="block text-sm font-medium">
-                        Content
-                    </label>
-                    <textarea
-                        id="content"
-                        name="content"
-                        value={formData.content}
-                        onChange={handleChange}
-                        className="w-full border px-3 py-2"
-                        rows={5}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="category" className="block text-sm font-medium">
-                        Category
-                    </label>
-                    <input
                         type="text"
-                        id="category"
-                        name="category"
-                        value={formData.category}
-                        onChange={handleChange}
-                        className="w-full border px-3 py-2"
+                        placeholder="Enter blog title"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
                     />
                 </div>
-                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-                    Submit
-                </button>
+
+                {/* Image Input */}
+                <div className="form-group">
+                    <Label htmlFor="image" className="block mb-1 font-medium text-gray-700">
+                        Image URL
+                    </Label>
+                    <Input
+                        id="image"
+                        type="url"
+                        placeholder="Enter image URL"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
+                    />
+                </div>
+
+                {/* Blog Body */}
+                {/* <div className="form-group">
+                    <Label htmlFor="body" className="block mb-1 font-medium text-gray-700">
+                        Blog Body
+                    </Label>
+                    <Textarea
+                        id="body"
+                        placeholder="Write your blog content here"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-500 focus:outline-none"
+                        rows={6}
+                    />
+                </div> */}
+
+                {/* Toggle Group */}
+                <div className="form-group">
+                    <Label className="block mb-1 font-medium text-gray-700">Blog Body</Label>
+                    <Tiptap />
+                </div>
+
+                {/* Submit Button */}
+                <div className="form-group">
+                    <Button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                        Add Blog
+                    </Button>
+                </div>
             </form>
         </div>
     );
-}
+};
+
+export default AddBlog;

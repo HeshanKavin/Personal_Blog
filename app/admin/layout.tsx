@@ -59,7 +59,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
             <div className="absolute top-4 right-4">
                 <ModeToggle />
             </div>
-            <main>
+            <main className="">
                 <SidebarTrigger />
                 {children}
             </main>
