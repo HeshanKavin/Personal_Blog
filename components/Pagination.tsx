@@ -1,38 +1,55 @@
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-} from "@/components/ui/pagination"
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from "@/components/ui/pagination";
 
-export function PaginationDemo() {
+interface PaginationDemoProps {
+    currentPage: number;
+    totalBlogs: number;
+    paginate: (pageNumber: number) => void;
+}
+
+export function PaginationDemo({ currentPage, totalBlogs, paginate }: PaginationDemoProps) {
+    const blogsPerPage = 4;  // Set the number of blogs per page
+
+    // Calculate the total number of pages
+    const totalPages = Math.ceil(totalBlogs / blogsPerPage);
+
+    // Generate an array of page numbers
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
+
     return (
         <Pagination>
             <PaginationContent>
                 <PaginationItem>
-                    <PaginationPrevious href="#" />
+                    <PaginationPrevious
+                        href="#"
+                        onClick={() => currentPage > 1 && paginate(currentPage - 1)}
+                    />
                 </PaginationItem>
+
+                {/* Display page numbers */}
+                {pageNumbers.map((number) => (
+                    <PaginationItem key={number}>
+                        <PaginationLink
+                            href="#"
+                            isActive={currentPage === number}
+                            onClick={() => paginate(number)}
+                        >
+                            {number}
+                        </PaginationLink>
+                    </PaginationItem>
+                ))}
+
                 <PaginationItem>
-                    <PaginationLink href="#">1</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                    <PaginationLink href="#" isActive>
-                        2
-                    </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                    <PaginationLink href="#">3</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                    <PaginationEllipsis />
-                </PaginationItem>
-                <PaginationItem>
-                    <PaginationNext href="#" />
+                    <PaginationNext
+                        href="#"
+                        onClick={() =>
+                            currentPage < totalPages && paginate(currentPage + 1)
+                        }
+                    />
                 </PaginationItem>
             </PaginationContent>
         </Pagination>
-    )
+    );
 }

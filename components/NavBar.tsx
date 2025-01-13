@@ -1,7 +1,8 @@
 import React from 'react'
-import { FaFacebook, FaInstagram, FaYoutube, FaTwitter, FaSearch } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 import { ModeToggle } from './ModeToggle';
 import NavigationMenuDemo from './NavigationMenuDemo';
+import SocialMedia from './SocialMedia';
 
 const NavBar = () => {
     return (
@@ -10,20 +11,7 @@ const NavBar = () => {
                 DreamForge
             </div>
             <NavigationMenuDemo />
-            <div className='flex items-center space-x-4'>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                    <FaFacebook className='text-xl it' />
-                </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                    <FaInstagram className='text-xl ' />
-                </a>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-                    <FaYoutube className='text-xl' />
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                    <FaTwitter className='text-xl' />
-                </a>
-            </div>
+            <SocialMedia />
             <div className='flex items-center space-x-4'>
                 <FaSearch className='text-xl cursor-pointer ' />
                 <ModeToggle />

@@ -11,3 +11,10 @@ const page = () => {
 }
 
 export default page
+
+
+// const onSubmit = (data: any) => {
+//     console.log("Form Data:", data);
+//     alert("Thank you for reaching out! We will get back to you soon.");
+//     formMethods.reset(); // Reset form fields
+// };

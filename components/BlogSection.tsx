@@ -1,19 +1,59 @@
-import React from 'react'
+// BlogSection.tsx
+'use client';
 
-const BlogSection = () => {
-    return (
-        <div>
-            <h1 className='text-center text-5xl m-5'>Blog</h1>
-            <div>
-                <div className='flex justify-center'>
-                    <div className=' m-5 p-5 rounded-lg shadow-lg'>
-                        <h2 className='text-2xl'>Blog 1</h2>
-                        <p className='text-lg'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus vitae purus fermentum feugiat. Nulla facilisi. Donec euismod, mi nec ultricies ultricies, nunc nunc ultricies elit, nec ultricies elit elit.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+import React, { useEffect, useState } from 'react';
+import { getAllBlogs } from '@/data/blog'
+import BlogCard from './BlogCard';
+import { PaginationDemo } from './Pagination';
+
+interface Blog {
+    id: number;
+    title: string;
+    image: string;
+    description: string;
+    writer: string;
+    date: string;
 }
 
-export default BlogSection
+const BlogSection = () => {
+    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [error, setError] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [blogsPerPage] = useState(4); // Number of blogs to display per page
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            const { blog, error } = await getAllBlogs();
+            if (error) {
+                setError(error);
+            } else if (blog) {
+                setBlogs(blog);
+            }
+        };
+
+        fetchBlogs();
+    }, []);
+
+    // Pagination logic
+    const indexOfLastBlog = currentPage * blogsPerPage;
+    const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+    const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+    if (error) {
+        return <p className="text-center text-red-500">Error: {error}</p>;
+    }
+
+    return (
+        <div className="px-4 sm:px-8 lg:px-16">
+            <h1 className="text-center font-bold text-3xl sm:text-4xl lg:text-5xl m-5">Blogs</h1>
+            <div className='flex flex-wrap justify-center gap-6 pb-5'>
+                <BlogCard blogs={currentBlogs} />
+                <PaginationDemo currentPage={currentPage} totalBlogs={blogs.length} paginate={paginate} />
+            </div>
+        </div>
+    );
+};
+
+export default BlogSection;

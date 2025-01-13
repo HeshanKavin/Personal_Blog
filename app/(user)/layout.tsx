@@ -3,7 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import SiteConfig from "../config/site";
 import NavBar from "@/components/NavBar";
-//import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { Footer } from "@/components/Footer";
 
 
@@ -34,16 +34,16 @@ export default function RootLayout({
             <body
                 className={cn(`${inter.variable} ${poppins.variable} min-h-screen bg-background font-sans antialiased`)}
             >
-                {/* <ThemeProvider
+                <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
                     enableSystem
                     disableTransitionOnChange
-                > */}
-                <NavBar />
-                {children}
-                <Footer />
-                {/* </ThemeProvider> */}
+                >
+                    <NavBar />
+                    {children}
+                    <Footer />
+                </ThemeProvider>
             </body>
         </html>
     );

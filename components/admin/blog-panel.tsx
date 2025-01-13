@@ -1,87 +1,33 @@
-import { Blog, columns } from "./columns"
-import { DataTable } from "./data-table"
 
-async function getData(): Promise<Blog[]> {
-    // Fetch data from your API here.
-    return [
-        {
-            id: "728ed52f",
-            title: "10",
-            category: "pending",
-            action: "m@example.com",
-        },
-        {
-            id: "728ed52f",
-            title: "110",
-            category: "pending",
-            action: "m@example.com",
-        },
-        {
-            id: "728ed52f",
-            title: "100",
-            category: "pending",
-            action: "m@example.com",
-        },
-        {
-            id: "728ed52f",
-            title: "100",
-            category: "pending",
-            action: "m@example.com",
-        },
-        {
-            id: "728ed52f",
-            title: "100",
-            category: "pending",
-            action: "m@example.com",
-        },
-        {
-            id: "728ed52f",
-            title: "100",
-            category: "pending",
-            action: "m@example.com",
-        },
-        {
-            id: "728ed52f",
-            title: "100",
-            category: "pending",
-            action: "m@example.com",
-        },
-        {
-            id: "728ed52f",
-            title: "100",
-            category: "pending",
-            action: "m@example.com",
-        },
-        {
-            id: "728ed52f",
-            title: "100",
-            category: "pending",
-            action: "m@example.com",
-        },
-        {
-            id: "728ed52f",
-            title: "100",
-            category: "pending",
-            action: "m@example.com",
-        },
-        {
-            id: "728ed52f",
-            title: "100",
-            category: "pending",
-            action: "m@example.com",
-        },
-        {
-            id: "728ed52f",
-            title: "100",
-            category: "pending",
-            action: "m@example.com",
-        },
-        // ...
-    ]
-}
+"use client"
+import * as React from "react"
+import { DataTable } from "@/components/admin/data-table"
+import { blogs, columns } from "@/components/admin/columns"
+import { getAllBlogs } from "@/data/blog" // Assume getData fetches the blog data
 
-export default async function DemoPage() {
-    const data = await getData()
+export default function DemoPage() {
+    const [data, setData] = React.useState<blogs[]>([])
+    const [loading, setLoading] = React.useState<boolean>(true)
+
+    React.useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true)
+            try {
+                const { blog: blogData } = await getAllBlogs()
+                setData(blogData || [])
+            } catch (error) {
+                console.error("Error fetching data:", error)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchData()
+    }, [])
+
+    if (loading) {
+        return <div>Loading...</div>
+    }
 
     return (
         <div className="container mx-auto py-10">
@@ -89,3 +35,4 @@ export default async function DemoPage() {
         </div>
     )
 }
+

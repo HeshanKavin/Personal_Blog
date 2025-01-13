@@ -2,10 +2,10 @@ import React from 'react'
 import Link from 'next/link'
 import {
     NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuItem,
+    // NavigationMenuContent,
+    // NavigationMenuItem,
     NavigationMenuList,
-    NavigationMenuTrigger,
+    // NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 
 
@@ -15,7 +15,8 @@ const NavigationMenuDemo = () => {
             <NavigationMenuList className='flex space-x-5'>
                 <li><Link href={"/"}>Home</Link></li>
                 <li><Link href={"/about"}>About</Link></li>
-                <NavigationMenuItem>
+                <li><Link href={"/blog"}>Blogs</Link></li>
+                {/* <NavigationMenuItem>
                     <NavigationMenuTrigger>Category</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid gap-3 p-4 w-[200px]">
@@ -29,7 +30,7 @@ const NavigationMenuDemo = () => {
                             </Link>
                         </ul>
                     </NavigationMenuContent>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
                 <li><Link href={"/contact"}>Contact</Link></li>
             </NavigationMenuList>
         </NavigationMenu>

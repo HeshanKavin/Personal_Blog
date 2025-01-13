@@ -6,14 +6,16 @@ import { Button } from "@/components/ui/button"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Blog = {
-    id: string
+export type blogs = {
+    id: number
     title: string
-    category: string
-    action: string
+    image: string
+    description: string
+    blog_body: string
+    writer: string
 }
 
-export const columns: ColumnDef<Blog>[] = [
+export const columns: ColumnDef<blogs>[] = [
     {
         accessorKey: "title",
         header: ({ column }) => {
@@ -29,21 +31,38 @@ export const columns: ColumnDef<Blog>[] = [
         },
     },
     {
-        accessorKey: "category",
-        header: "Category",
+        accessorKey: "description",
+        header: "Description",
     },
+    // {
+    //     accessorKey: "image",
+    //     header: "Image_url",
+    // },
+    // {
+    //     accessorKey: "blog_body",
+    //     header: "Blog Body",
+    // },
+    {
+        accessorKey: "date",
+        header: "Date",
+    },
+    {
+        accessorKey: "writer",
+        header: "Writer",
+    },
+
     {
         id: "actions",
         header: "Actions",
         cell: ({ row }) => {
-            const payment = row.original;
+            const blog = row.original;
 
             return (
                 <div className="space-x-2">
                     <Button
                         variant="secondary"
                         onClick={() => {
-                            console.log(`Edit payment with ID: ${payment.id}`);
+                            console.log(`Edit blog with ID:${blog.id}`);
                             // Add your edit logic here
                         }}
                     >
@@ -52,7 +71,7 @@ export const columns: ColumnDef<Blog>[] = [
                     <Button
                         variant="default"
                         onClick={() => {
-                            console.log(`Delete payment with ID: ${payment.id}`);
+                            console.log(`Delete blog with ID: ${blog.id}`);
                             // Add your delete logic here
                         }}
                     >
