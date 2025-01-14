@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import homeImage from "@/public/8.jpg" // Correct path for the public directory
+import homeImage from "@/public/9.jpg" // Correct path for the public directory
 
 const AboutPage: React.FC = () => {
     return (
