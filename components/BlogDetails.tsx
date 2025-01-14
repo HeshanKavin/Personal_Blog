@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface BlogProps {
     blog: {
@@ -20,7 +21,12 @@ const BlogDetails: React.FC<BlogProps> = ({ blog }) => {
             </h1>
 
             {/* Image */}
-            <img src={blog.image} alt={blog.title} className="w-full h-auto rounded-lg mb-4" />
+            <Image
+                src={blog.image}
+                width={400}
+                height={100}
+                alt={blog.title}
+                className="w-full h-auto rounded-lg mb-4" />
 
             {/* Description */}
             <p className="text-base sm:text-lg lg:text-xl mb-4">{blog.description}</p>

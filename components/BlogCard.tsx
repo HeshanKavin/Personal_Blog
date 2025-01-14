@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from './ui/button';
 import Link from 'next/link';
 
 interface Blog {

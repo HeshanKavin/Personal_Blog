@@ -1,12 +1,16 @@
 import React from 'react';
-import { getBlogById } from '@/data/blog'; // Ensure this API fetch function is implemented
+import { getBlogById } from '@/data/blog'; // Your existing data fetching function
 import BlogDetails from '@/components/BlogDetails';
 import BlogSection from '@/components/BlogSection';
 import CategorySection from '@/components/CategorySection';
 
-const BlogDetailsPage = async ({ params }: { params: { blogid: string } }) => {
-    const { blogid } = params;
-    const { blog, error } = await getBlogById(Number(blogid)); // Fetch blog details dynamically
+export default async function Page({
+    params,
+}: {
+    params: Promise<{ blogid: string }>;
+}) {
+    const { blogid } = await params; // Await the params promise
+    const { blog, error } = await getBlogById(Number(blogid)); // Fetch blog by ID
 
     if (error) {
         return <div className="text-center text-red-500">Error: {error}</div>;
@@ -24,8 +28,5 @@ const BlogDetailsPage = async ({ params }: { params: { blogid: string } }) => {
             <CategorySection />
             <BlogSection />
         </div>
-
     );
-};
-
-export default BlogDetailsPage;
+}

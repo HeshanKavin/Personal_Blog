@@ -9,7 +9,6 @@ import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from 'react-icons/fa6';
 import {
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -28,7 +27,7 @@ const ContactPage: React.FC = () => {
         mode: "onBlur", // Enable validation on blur
     });
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: { name: string; email: string; message: string }) => {
         console.log("Form Data:", data);
         alert("Thank you for reaching out! We will get back to you soon.");
         formMethods.reset(); // Reset form fields
