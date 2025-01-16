@@ -14,7 +14,8 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { signup, login } from "@/actions/auth"
+import { login } from "@/actions/auth"
+//import { signup } from "@/actions/auth"
 
 const formSchema = z.object({
     email: z.string().email({
@@ -83,7 +84,13 @@ export function LoginForm() {
                 />
                 <div className="flex justify-between">
                     <Button formAction={login} type="submit">Login</Button>
-                    <Button formAction={signup} type="submit">Signup</Button>
+                    {/* <Button formAction={signup} type="submit">Signup</Button> */}
+                    <a
+                        href="/forgot-password" // Update this with the actual path
+                        className="text-sm text-blue-600 underline hover:text-blue-800"
+                    >
+                        Forgot Password?
+                    </a>
                 </div>
             </form>
         </Form>
